@@ -1,3 +1,5 @@
+# The Game of Life
+
 Here is one of my task from Tinkoff exam for ML&DL course and it is really shitty things yet
 
 I must simulate a game named "Game of life" (like Scorpions's song, ha-ha) 
