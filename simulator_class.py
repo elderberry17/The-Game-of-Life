@@ -1,5 +1,6 @@
 from const import cell_size, height, colors_dict
 
+
 class Simulation:
     def __init__(self, grid_to_simulate):
         self.grid = grid_to_simulate

@@ -1,36 +1,18 @@
 import pygame as pg
-from grid_class import Grid
 from const import width, height, extra_height, colors_dict, cell_size
-from simulator_class import Simulation
-
-pg.init()
-
-# переменная дисплея и часиков для отслеживания времени
-display = pg.display.set_mode((width, height + extra_height))
-pg.display.set_caption('The Game of Life')
-clock = pg.time.Clock()
-
-# главный класс сетки, содержащий в себе классы ячеек
-main_grid = Grid(display, colors_dict, cell_size)
-main_grid.make_cells()
-
-# созададим класс, который примет нашу сетку и будет обновлять цвета ее ячеек в зависимости от текущей ситуации
-main_simulator = Simulation(main_grid)
 
 
-# функция для начального окрашивания 10 ячеек
-def check_click(event):
+def check_click(event, grid):
     if event.type == pg.MOUSEBUTTONDOWN:
         x_click, y_click = event.pos[0] // cell_size * cell_size, event.pos[1] // cell_size * cell_size
         index = x_click // cell_size * height // cell_size + y_click // cell_size
-        if main_grid.cells[index].color != colors_dict["life"]:
-            main_grid.cells[index].change_color(colors_dict["life"])
+        if grid.cells[index].color != colors_dict["life"]:
+            grid.cells[index].change_color(colors_dict["life"])
             return True
     return False
 
 
-# для логирования текста
-def logging(gen, population, sim, set_cells):
+def logging(display, gen, population, sim, set_cells):
     display.fill(colors_dict["back"])
     font = pg.font.SysFont("arial", 28)
     color = colors_dict["text"]
@@ -44,7 +26,7 @@ def logging(gen, population, sim, set_cells):
         display.blit(log_gen, text_rect)
 
 
-def show_end(gens, pops):
+def show_end(display, gens, pops):
     display.fill(colors_dict["back"])
     font = pg.font.SysFont("arial", 28)
     over_log = font.render(f"The game is over. Max population is {max(pops)} in {gens[-1]} generations", True,
@@ -54,9 +36,8 @@ def show_end(gens, pops):
     pg.display.update()
 
 
-# для отрисовки всего на свете и обновления поля
-def draw():
-    main_grid.draw_cells()
-    main_grid.draw_grid()
+def draw(grid):
+    grid.draw_cells()
+    grid.draw_grid()
 
     pg.display.update()

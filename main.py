@@ -1,7 +1,10 @@
 import pygame as pg
 import sys
-from const import max_set_cells, FPS, time_to_sleep
-from tools import clock, check_click, draw, main_simulator, logging, show_end
+from const import max_set_cells, FPS, time_to_sleep, \
+    width, height, extra_height, colors_dict, cell_size, capture
+from tools import check_click, draw, logging, show_end
+from simulator_class import Simulation
+from grid_class import Grid
 from time import sleep
 
 
@@ -18,7 +21,7 @@ def play():
                 pg.quit()
                 sys.exit()
             elif set_cells < max_set_cells:
-                if check_click(event):
+                if check_click(event, main_grid):
                     set_cells += 1
 
         if has_changes and set_cells == max_set_cells:
@@ -31,13 +34,22 @@ def play():
             sleep(time_to_sleep)
 
         if has_changes:
-            logging(generation, main_simulator.grid.alive, simulation, max_set_cells - set_cells)
-            draw()
+            logging(display, generation, main_simulator.grid.alive, simulation, max_set_cells - set_cells)
+            draw(main_grid)
 
         else:
-            show_end(gens, pops)
+            show_end(display, gens, pops)
 
 
 if __name__ == "__main__":
     pg.init()
+
+    display = pg.display.set_mode((width, height + extra_height))
+    pg.display.set_caption(capture)
+    clock = pg.time.Clock()
+
+    main_grid = Grid(display, colors_dict, cell_size)
+    main_grid.make_cells()
+    main_simulator = Simulation(main_grid)
+
     play()

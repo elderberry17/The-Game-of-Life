@@ -7,3 +7,4 @@ colors_dict = {"back": (245, 240, 225), "lines": (30, 61, 89), "life": (80, 200,
 cell_size = 32
 FPS = 60
 time_to_sleep = 0.35
+capture = 'The Game of Life'
