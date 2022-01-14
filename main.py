@@ -44,12 +44,16 @@ def play():
 if __name__ == "__main__":
     pg.init()
 
-    display = pg.display.set_mode((width, height + extra_height))
-    pg.display.set_caption(capture)
-    clock = pg.time.Clock()
+    if width < 32 or height < 32:
+        print("Некорректный размер поля!")
+    elif max_set_cells % 1 != 0 or max_set_cells < 1:
+        print("Некорректное первоначальное количество существ!")
+    else:
+        display = pg.display.set_mode((width, height + extra_height))
+        pg.display.set_caption(capture)
+        clock = pg.time.Clock()
 
-    main_grid = Grid(display, colors_dict, cell_size)
-    main_grid.make_cells()
-    main_simulator = Simulation(main_grid)
-
-    play()
+        main_grid = Grid(display, colors_dict, cell_size)
+        main_grid.make_cells()
+        main_simulator = Simulation(main_grid)
+        play()

@@ -2,7 +2,6 @@ import pygame as pg
 from cell_class import Cell
 from const import width, height, max_set_cells
 
-
 class Grid:
     def __init__(self, display, colors, cell_size):
         self.display = display
