@@ -32,5 +32,5 @@ python3 main.py -num_cells_for_width -num_cells_for_height -num_of_start_creatur
 
 All these parameters are integere positive numbers!!
 
-![alt text](pictures/fun.png "Как-то так я писал этот код")​
+![see cuteness](pictures/fun.jpg "Как-то так я писал этот код")​
 
