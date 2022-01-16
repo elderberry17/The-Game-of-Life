@@ -31,3 +31,6 @@ python3 main.py -num_cells_for_width -num_cells_for_height -num_of_start_creatur
 -num_of_start_creatures -- an amount of creatures you set in the field in the start
 
 All these parameters are integere positive numbers!!
+
+![alt text](pictures/fun.png "Как-то так я писал этот код")​
+
