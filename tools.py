@@ -29,7 +29,7 @@ def logging(display, gen, population, sim, set_cells):
 def show_end(display, gens, pops):
     display.fill(colors_dict["back"])
     font = pg.font.SysFont("arial", 28)
-    over_log = font.render(f"The game is over. Max population is {max(pops)} in {gens[-1]} generations", True,
+    over_log = font.render(f"Game over. Max population is {max(pops)} in {gens[-1]} generations", True,
                            colors_dict["text"])
     over_rect = over_log.get_rect(center=(width // 2, (height + extra_height) // 2 - cell_size // 2))
     display.blit(over_log, over_rect)

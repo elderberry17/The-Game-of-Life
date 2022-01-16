@@ -1,4 +1,4 @@
-from const import cell_size, height, colors_dict
+from const import cell_size, height, width, colors_dict
 
 
 class Simulation:
@@ -11,8 +11,11 @@ class Simulation:
                        (x + cell_size, y + cell_size), (x - cell_size, y - cell_size),
                        (x + cell_size, y - cell_size), (x - cell_size, y + cell_size)]
 
-        neigh_coors = list(filter(lambda t: 0 <= t[0] <= 992 and 0 <= t[1] <= 480, neigh_coors))
-        neigh_indexes = list(map(lambda t: t[0] // cell_size * height // cell_size + t[1] // cell_size, neigh_coors))
+        neigh_coors = list(
+            filter(lambda t: 0 <= t[0] <= (width - cell_size) and 0 <= t[1] <= (height - cell_size),
+                   neigh_coors))
+        neigh_indexes = list(
+            map(lambda t: t[0] // cell_size * height // cell_size + t[1] // cell_size, neigh_coors))
 
         return neigh_indexes
 

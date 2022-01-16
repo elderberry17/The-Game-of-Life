@@ -44,7 +44,7 @@ def play():
 if __name__ == "__main__":
     pg.init()
 
-    if width < 32 or height < 32:
+    if width <= 0 or height <= 0:
         print("Некорректный размер поля!")
     elif max_set_cells % 1 != 0 or max_set_cells < 1:
         print("Некорректное первоначальное количество существ!")
@@ -55,5 +55,6 @@ if __name__ == "__main__":
 
         main_grid = Grid(display, colors_dict, cell_size)
         main_grid.make_cells()
+
         main_simulator = Simulation(main_grid)
         play()
